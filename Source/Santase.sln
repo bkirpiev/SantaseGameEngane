@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Santase.Logic", "Santase.Logic\Santase.Logic.csproj", "{07BF9693-1C9E-4AFB-B67F-5B50BFBCF2AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Santase.ConsoleUI", "Santase.ConsoleUI\Santase.ConsoleUI.csproj", "{F20B09D3-64FB-4CC0-B0C6-47529B84518E}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07BF9693-1C9E-4AFB-B67F-5B50BFBCF2AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BF9693-1C9E-4AFB-B67F-5B50BFBCF2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07BF9693-1C9E-4AFB-B67F-5B50BFBCF2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BF9693-1C9E-4AFB-B67F-5B50BFBCF2AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F20B09D3-64FB-4CC0-B0C6-47529B84518E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F20B09D3-64FB-4CC0-B0C6-47529B84518E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F20B09D3-64FB-4CC0-B0C6-47529B84518E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F20B09D3-64FB-4CC0-B0C6-47529B84518E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
