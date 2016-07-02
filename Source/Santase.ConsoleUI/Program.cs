@@ -2,7 +2,6 @@
 {
     using System;
 
-    using Logic.Cards;
     using Logic.GameLogic;
 
 
@@ -10,11 +9,12 @@
     {
         public static void Main(string[] args)
         {
-            ISantaseGame game = new SantaseGame();
+            ISantaseGame game = new SantaseGame(new ConsolePlayer(6, 10), new ConsolePlayer(8, 10), PlayerPosition.FirstPlayer);
 
             game.Start();
             Console.WriteLine("Game finished!");
             Console.WriteLine("{0} - {1}", game.FirstPlayerTotalPoints, game.SecondPlayerTotalPoints);
+            Console.WriteLine("Rounds Played: {0}", game.RoundsPlayed);
         }
     }
 }

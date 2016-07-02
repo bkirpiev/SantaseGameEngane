@@ -16,5 +16,10 @@
         /// Точките на втория играч
         /// </summary>
         int SecondPlayerTotalPoints { get; }
+
+        /// <summary>
+        /// Колко рунда са се изиграли
+        /// </summary>
+        int RoundsPlayed { get; }
     }
 }

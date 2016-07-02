@@ -48,6 +48,15 @@
     <Compile Include="Exceptions\InternalGameException.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\RandomProvider.cs" />
+    <Compile Include="GameLogic\GameRound.cs" />
+    <Compile Include="GameLogic\IGameRound.cs" />
+    <Compile Include="GameLogic\ISantaseGame.cs" />
+    <Compile Include="GameLogic\PlayerPosition.cs" />
+    <Compile Include="GameLogic\SantaseGame.cs" />
+    <Compile Include="Players\BasePlayer.cs" />
+    <Compile Include="Players\IPlayer.cs" />
+    <Compile Include="Players\PlayerAction.cs" />
+    <Compile Include="Players\PlayerTurnContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

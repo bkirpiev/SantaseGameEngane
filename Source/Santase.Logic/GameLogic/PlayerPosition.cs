@@ -4,6 +4,6 @@
     {
         NoOne = 0,
         FirstPlayer = 1,
-        ScondPlayer =2,
+        SecondPlayer =2,
     }
 }
