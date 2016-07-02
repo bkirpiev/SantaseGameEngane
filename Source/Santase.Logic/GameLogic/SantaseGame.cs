@@ -1,9 +1,5 @@
 ﻿namespace Santase.Logic.GameLogic
 {
-    using System;
-    using System.Runtime.InteropServices.ComTypes;
-
-
     public class SantaseGame : ISantaseGame
     {
         private int firstPlayerTotalPoints;
@@ -61,9 +57,65 @@
             IGameRound round = new GameRound();
 
             round.Start();
-            this.FirstPlayerTotalPoints += round.TotalPointsWonByFirstPlayer;
-
-            this.SecondPlayerTotalPoints += round.TotalPointsWonBySecondPlayer;
+            UpdatePoints(round);
         }
+
+        private void UpdatePoints(IGameRound round)
+        {
+
+            if (round.ClosedByPlayer == PlayerPosition.FirstPlayer)
+            {
+                if (round.FirstPlayerPoints < 66)
+                {
+                    this.SecondPlayerTotalPoints += 3;
+                    return;
+                }
+            }
+
+            if (round.ClosedByPlayer == PlayerPosition.ScondPlayer)
+            {
+                if (round.SecondPlayerPoints < 66)
+                {
+                    this.FirstPlayerTotalPoints += 3;
+                    return;
+                }
+            }
+
+            if (round.FirstPlayerPoints > round.SecondPlayerPoints)
+            {
+                if (round.SecondPlayerPoints >= 33)
+                {
+                    this.FirstPlayerTotalPoints += 1;
+                }
+                else if (round.SecondPlayerHasHand)
+                {
+                    this.FirstPlayerTotalPoints += 2;
+                }
+                else
+                {
+                    this.FirstPlayerTotalPoints += 3;
+                }
+            }
+            else if (round.SecondPlayerPoints > round.FirstPlayerPoints)
+            {
+                if (round.FirstPlayerPoints >= 33)
+                {
+                    this.SecondPlayerTotalPoints += 1;
+                }
+                else if (round.SecondPlayerHasHand)
+                {
+                    this.SecondPlayerTotalPoints += 2;
+                }
+                else
+                {
+                    this.SecondPlayerTotalPoints += 3;
+                }
+            }
+            else
+            {
+                // Когато двамта играчи имат еднакъв брой точки!
+            }
+        }
+
     }
 }
