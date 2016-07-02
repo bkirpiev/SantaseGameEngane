@@ -17,6 +17,7 @@
 
         #endregion
 
+
         #region Constructors
 
         public Deck()
@@ -40,6 +41,7 @@
         }
 
         #endregion
+
 
         #region Methods
 
