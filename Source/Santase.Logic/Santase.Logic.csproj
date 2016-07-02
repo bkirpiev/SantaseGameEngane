@@ -48,7 +48,9 @@
     <Compile Include="Exceptions\InternalGameException.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\RandomProvider.cs" />
+    <Compile Include="GameLogic\GameHand.cs" />
     <Compile Include="GameLogic\GameRound.cs" />
+    <Compile Include="GameLogic\IGameHand.cs" />
     <Compile Include="GameLogic\IGameRound.cs" />
     <Compile Include="GameLogic\ISantaseGame.cs" />
     <Compile Include="GameLogic\PlayerPosition.cs" />
@@ -58,6 +60,11 @@
     <Compile Include="Players\PlayerAction.cs" />
     <Compile Include="Players\PlayerTurnContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoundStates\BaseRoundState.cs" />
+    <Compile Include="RoundStates\FinalRoundState.cs" />
+    <Compile Include="RoundStates\MoreThanTwoCardRoudState.cs" />
+    <Compile Include="RoundStates\StartRoundState.cs" />
+    <Compile Include="RoundStates\TwoCardLeftRoundState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

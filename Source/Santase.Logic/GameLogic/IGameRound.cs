@@ -1,5 +1,8 @@
 ﻿namespace Santase.Logic.GameLogic
 {
+    using RoundStates;
+
+
     public interface IGameRound
     {
         void Start();
@@ -28,5 +31,7 @@
         /// Взимам играча, който е затворил играта
         /// </summary>
         PlayerPosition ClosedByPlayer { get; }
+
+        void SetState(BaseRoundState newState);
     }
 }

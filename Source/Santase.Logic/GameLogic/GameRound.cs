@@ -7,6 +7,8 @@
 
     using Players;
 
+    using RoundStates;
+
 
     public class GameRound : IGameRound
     {
@@ -23,6 +25,8 @@
         private IList<Card> secondPlayerCollectedCards;
 
         private PlayerPosition firstToPlay;
+
+        private BaseRoundState state;
 
         /// <summary>
         /// Никой не може да направи инстанция на играта, докато не ми подаде двама играчи
@@ -44,6 +48,9 @@
             this.secondPlayerCollectedCards = new List<Card>();
 
             this.firstToPlay = firstToPlay;
+
+            // Disign Pattern State
+            this.SetState(new StartRoundState(this));
         }
 
         public void Start()
@@ -145,6 +152,12 @@
         public PlayerPosition ClosedByPlayer
         {
             get { throw new NotImplementedException(); }
+        }
+
+
+        public void SetState(BaseRoundState newState)
+        {
+            this.state = newState;
         }
     }
 }
