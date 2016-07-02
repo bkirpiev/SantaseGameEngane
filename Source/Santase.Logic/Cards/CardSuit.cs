@@ -2,9 +2,9 @@
 {
     public enum CardSuit
     {
-        Club,
-        Diamond,
-        Heart,
-        Spade,
+        Club, // ♣
+        Diamond, // ♦
+        Heart, // ♥
+        Spade, // ♠
     }
 }

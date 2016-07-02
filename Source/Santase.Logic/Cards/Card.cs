@@ -1,8 +1,5 @@
 ﻿namespace Santase.Logic.Cards
 {
-    using System.Runtime.CompilerServices;
-
-
     public class Card
     {
 
