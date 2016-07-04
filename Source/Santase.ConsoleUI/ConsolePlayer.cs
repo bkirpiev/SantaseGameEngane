@@ -1,9 +1,11 @@
 ﻿namespace Santase.ConsoleUI
 {
     using System;
+    using System.CodeDom;
     using System.Threading;
 
     using Logic.Cards;
+    using Logic.Exceptions;
     using Logic.Players;
 
 
@@ -44,7 +46,7 @@
         {
             // TODO
             Console.ReadLine();
-            return new PlayerAction();
+            return new PlayerAction(PlayerActionType.ChangeTrump, new Card(CardSuit.Club, CardType.Ace), Announce.None);
         }
     }
 }
