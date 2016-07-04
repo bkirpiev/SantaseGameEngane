@@ -101,6 +101,23 @@
                 }
             }
 
+            // Aко нито един от играчине не е направил повече от 66 точки, то печели този, които е взел последната ръка.
+            if (round.FirstPlayerPoints < 66 && round.SecondPlayerPoints < 66)
+            {
+                var winner = round.LastHandInPlayer;
+
+                if (winner == PlayerPosition.FirstPlayer)
+                {
+                    this.FirstPlayerTotalPoints += 1;
+                    this.firstToPlay = PlayerPosition.SecondPlayer;
+                }
+                else
+                {
+                    this.SecondPlayerTotalPoints += 1;
+                    this.firstToPlay = PlayerPosition.FirstPlayer;
+                }
+            }
+
             if (round.FirstPlayerPoints > round.SecondPlayerPoints)
             {
                 if (round.SecondPlayerPoints >= 33)

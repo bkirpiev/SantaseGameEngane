@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.InteropServices.ComTypes;
 
     using Cards;
 
@@ -60,7 +61,6 @@
             while (!this.IsFinished())
             {
                 // PlayHand();
-
             }
         }
 
@@ -71,26 +71,22 @@
         {
             for (int i = 0; i < 3; i++)
             {
-                var card = this.deck.GetNextCard();
-                this.firstPlayer.AddCard(card);
+                this.GiveCardToFirstPlayer();
             }
 
             for (int i = 0; i < 3; i++)
             {
-                var card = this.deck.GetNextCard();
-                this.secondPlayer.AddCard(card);
+                this.GiveCardToSecondPlayer();
             }
 
             for (int i = 0; i < 3; i++)
             {
-                var card = this.deck.GetNextCard();
-                this.firstPlayer.AddCard(card);
+                this.GiveCardToFirstPlayer();
             }
 
             for (int i = 0; i < 3; i++)
             {
-                var card = this.deck.GetNextCard();
-                this.secondPlayer.AddCard(card);
+                this.GiveCardToSecondPlayer();
             }
         }
 
@@ -114,10 +110,65 @@
             IGameHand hand = new GameHand();
             hand.Start();
 
+            this.UpdatePoints(hand);
+
+            if (hand.Winner == PlayerPosition.FirstPlayer)
+            {
+                firstPlayerCollectedCards.Add(hand.FirstPlayerCard);
+                firstPlayerCollectedCards.Add(hand.SecondPlayerCard);
+            }
+            else
+            {
+                secondPlayerCollectedCards.Add(hand.FirstPlayerCard);
+                secondPlayerCollectedCards.Add(hand.SecondPlayerCard);
+            }
+
             this.firstToPlay = hand.Winner;
-            // TODO: Update points
-            // TODO: Add one more card to both players
-            // TODO: Update collected cards for both players;
+
+            if (this.state.ShouldDrawCard)
+            {
+                if (this.firstToPlay == PlayerPosition.FirstPlayer)
+                {
+                    this.GiveCardToFirstPlayer();
+                    this.GiveCardToSecondPlayer();
+                }
+                else
+                {
+                    this.GiveCardToSecondPlayer();
+                    this.GiveCardToFirstPlayer();
+                }
+            }
+        }
+
+        private void GiveCardToFirstPlayer()
+        {
+            var card = this.deck.GetNextCard();
+            this.firstPlayer.AddCard(card);
+            this.firstPlayerCards.Add(card);
+        }
+
+        private void GiveCardToSecondPlayer()
+        {
+            var card = this.deck.GetNextCard();
+            this.secondPlayer.AddCard(card);
+            this.secondPlayerCards.Add(card);
+        }
+
+        private void UpdatePoints(IGameHand hand)
+        {
+            if (hand.Winner == PlayerPosition.FirstPlayer)
+            {
+                this.firstPlayerPoints += hand.FirstPlayerCard.GetValue();
+                this.firstPlayerPoints += hand.SecondPlayerCard.GetValue();
+            }
+            else
+            {
+                this.secondPlayerPoints += hand.SecondPlayerCard.GetValue();
+                this.secondPlayerPoints += hand.FirstPlayerCard.GetValue();
+            }
+
+            this.firstPlayerPoints += (int)hand.FirstPlayerAnnounce;
+            this.secondPlayerPoints += (int)hand.SecondPlayerAnnounce;
         }
 
         public int FirstPlayerPoints
@@ -154,10 +205,17 @@
             get { throw new NotImplementedException(); }
         }
 
-
         public void SetState(BaseRoundState newState)
         {
             this.state = newState;
+        }
+
+        public PlayerPosition LastHandInPlayer
+        {
+            get
+            {
+                return this.firstToPlay;
+            }
         }
     }
 }

@@ -33,5 +33,7 @@
         PlayerPosition ClosedByPlayer { get; }
 
         void SetState(BaseRoundState newState);
+
+        PlayerPosition LastHandInPlayer { get; }
     }
 }
