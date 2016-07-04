@@ -22,5 +22,7 @@
         /// </summary>
         /// <param name="newCard"></param>
         void ChangeTrumpCard(Card newCard);
+
+        int CardsLeft { get; }
     }
 }

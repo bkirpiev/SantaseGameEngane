@@ -7,6 +7,7 @@
 
     using Extensions;
 
+
     public class Deck : IDeck
     {
         #region Fields
@@ -14,6 +15,19 @@
         private IList<Card> listOfCards;
 
         private Card trumCard;
+
+        #endregion
+
+
+        #region Properties
+
+        public int CardsLeft
+        {
+            get
+            {
+                return this.listOfCards.Count;
+            }
+        }
 
         #endregion
 
@@ -105,6 +119,7 @@
         }
 
         #endregion
-   
+
+       
     }
 }

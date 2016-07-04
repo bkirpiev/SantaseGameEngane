@@ -40,5 +40,7 @@
         {
             get { throw new System.NotImplementedException(); }
         }
+
+        public PlayerPosition GameClosedBy { get; }
     }
 }

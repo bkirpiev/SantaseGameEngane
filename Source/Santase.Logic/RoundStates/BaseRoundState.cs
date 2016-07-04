@@ -23,7 +23,7 @@
         public abstract bool ShouldDrawCard { get; }
 
         /// <summary>
-        /// Спрямо това колко карти са останали в играта мое да се определи състоянието на играта
+        /// Спрямо това колко карти са останали в играта може да се определи състоянието на играта
         /// </summary>
         /// <param name="cardsLeftInDeck"></param>
         public abstract void PlayHand(int cardsLeftInDeck);

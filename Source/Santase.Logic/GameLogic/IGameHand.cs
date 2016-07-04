@@ -16,5 +16,7 @@
         Card SecondPlayerCard { get; }
 
         Announce SecondPlayerAnnounce { get; }
+
+        PlayerPosition GameClosedBy { get; }
     }
 }

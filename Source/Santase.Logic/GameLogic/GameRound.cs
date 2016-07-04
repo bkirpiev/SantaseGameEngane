@@ -26,6 +26,7 @@
         private IList<Card> secondPlayerCollectedCards;
 
         private PlayerPosition firstToPlay;
+        private PlayerPosition gameClosedBy;
 
         private BaseRoundState state;
 
@@ -52,6 +53,8 @@
 
             // Disign Pattern State
             this.SetState(new StartRoundState(this));
+
+            this.gameClosedBy = PlayerPosition.NoOne;
         }
 
         public void Start()
@@ -60,7 +63,7 @@
 
             while (!this.IsFinished())
             {
-                // PlayHand();
+                this.PlayHand();
             }
         }
 
@@ -125,19 +128,19 @@
 
             this.firstToPlay = hand.Winner;
 
-            if (this.state.ShouldDrawCard)
+            this.firstPlayerCards.Remove(hand.FirstPlayerCard);
+            this.secondPlayerCards.Remove(hand.FirstPlayerCard);
+
+            this.DrawNewCards();
+
+            this.state.PlayHand(this.deck.CardsLeft);
+
+            if (hand.GameClosedBy == PlayerPosition.FirstPlayer || hand.GameClosedBy == PlayerPosition.SecondPlayer)
             {
-                if (this.firstToPlay == PlayerPosition.FirstPlayer)
-                {
-                    this.GiveCardToFirstPlayer();
-                    this.GiveCardToSecondPlayer();
-                }
-                else
-                {
-                    this.GiveCardToSecondPlayer();
-                    this.GiveCardToFirstPlayer();
-                }
+                this.state.Close();
+                this.gameClosedBy = hand.GameClosedBy;
             }
+
         }
 
         private void GiveCardToFirstPlayer()
@@ -152,6 +155,23 @@
             var card = this.deck.GetNextCard();
             this.secondPlayer.AddCard(card);
             this.secondPlayerCards.Add(card);
+        }
+
+        private void DrawNewCards()
+        {
+            if (this.state.ShouldDrawCard)
+            {
+                if (this.firstToPlay == PlayerPosition.FirstPlayer)
+                {
+                    this.GiveCardToFirstPlayer();
+                    this.GiveCardToSecondPlayer();
+                }
+                else
+                {
+                    this.GiveCardToSecondPlayer();
+                    this.GiveCardToFirstPlayer();
+                }
+            }
         }
 
         private void UpdatePoints(IGameHand hand)
@@ -202,7 +222,10 @@
 
         public PlayerPosition ClosedByPlayer
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return this.gameClosedBy;
+            }
         }
 
         public void SetState(BaseRoundState newState)
