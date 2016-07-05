@@ -15,13 +15,16 @@
         private IPlayer firstPlayer;
         private IPlayer secondPlayer;
         private BaseRoundState state;
+        private Card trumpCard;
+        private IDeck deck;
 
-        public GameHand(PlayerPosition whoWillPlayFirst, IPlayer firstPlayer, IPlayer secondPlayer, BaseRoundState state)
+        public GameHand(PlayerPosition whoWillPlayFirst, IPlayer firstPlayer, IPlayer secondPlayer, BaseRoundState state, IDeck deck)
         {
             this.whoWillPlayFirst = whoWillPlayFirst;
             this.firstPlayer = firstPlayer;
             this.secondPlayer = secondPlayer;
             this.state = state;
+            this.deck = deck;
         }
 
         public void Start()
@@ -47,11 +50,11 @@
                 firstFirstPlayerAction = this.FirstPlayerTurn(firstToPlay);
             } while (firstFirstPlayerAction.Type != PlayerActionType.PlayCard);
 
-            PlayerAction secondFirstPlayerAction = firstToPlay.GetTurn(new PlayerTurnContext());
+            PlayerAction secondFirstPlayerAction = firstToPlay.GetTurn(new PlayerTurnContext(deck.GetTrumpCard, this.state, deck.CardsLeft), new PlayerActionValidator());
             //TODO: turn == close => close, change state, ask first
             //TODO: turn == trumpChange => change, ask, first
 
-            var secondToPlayTurn = secondToPlay.GetTurn(new PlayerTurnContext());
+            var secondToPlayTurn = secondToPlay.GetTurn(new PlayerTurnContext(deck.GetTrumpCard, this.state, deck.CardsLeft), new PlayerActionValidator());
 
             // Determine who wins the hand
         }
@@ -93,7 +96,7 @@
         /// <returns></returns>
         private PlayerAction FirstPlayerTurn(IPlayer firstToPlay)
         {
-            var firstToPlayTurn = firstToPlay.GetTurn(new PlayerTurnContext());
+            var firstToPlayTurn = firstToPlay.GetTurn(new PlayerTurnContext(deck.GetTrumpCard, this.state, deck.CardsLeft), new PlayerActionValidator());
 
             if (firstToPlayTurn.Type == PlayerActionType.CloseGame)
             {
@@ -114,8 +117,5 @@
 
             return firstToPlayTurn;
         }
-
-
-
     }
 }

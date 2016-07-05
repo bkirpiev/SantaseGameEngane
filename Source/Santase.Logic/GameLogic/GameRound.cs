@@ -110,7 +110,7 @@
 
         private void PlayHand()
         {
-            IGameHand hand = new GameHand(this.firstToPlay, this.firstPlayer, this.secondPlayer, this.state);
+            IGameHand hand = new GameHand(this.firstToPlay, this.firstPlayer, this.secondPlayer, this.state, this.deck);
             hand.Start();
 
             this.UpdatePoints(hand);

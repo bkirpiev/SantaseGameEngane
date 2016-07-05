@@ -26,9 +26,9 @@
         /// Спрямо това колко карти са останали в играта може да се определи състоянието на играта
         /// </summary>
         /// <param name="cardsLeftInDeck"></param>
-        public abstract void PlayHand(int cardsLeftInDeck);
+        internal abstract void PlayHand(int cardsLeftInDeck);
 
-        public void Close()
+        internal void Close()
         {
             if (this.CanClose)
             {

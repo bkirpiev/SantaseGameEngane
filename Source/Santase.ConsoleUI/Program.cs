@@ -9,7 +9,7 @@
     {
         public static void Main(string[] args)
         {
-            ISantaseGame game = new SantaseGame(new ConsolePlayer(6, 10), new ConsolePlayer(8, 10), PlayerPosition.FirstPlayer);
+            ISantaseGame game = new SantaseGame(new ConsolePlayer(6, 10), new ConsolePlayer(15, 10), PlayerPosition.FirstPlayer);
 
             game.Start();
             Console.WriteLine("Game finished!");

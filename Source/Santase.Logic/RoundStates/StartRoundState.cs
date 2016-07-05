@@ -45,7 +45,7 @@
             get { return true; }
         }
 
-        public override void PlayHand(int cardsLeftInDeck)
+        internal override void PlayHand(int cardsLeftInDeck)
         {
             this.round.SetState(new MoreThanTwoCardRoudState(this.round));
         }
